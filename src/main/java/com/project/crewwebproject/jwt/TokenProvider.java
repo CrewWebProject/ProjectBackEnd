@@ -34,7 +34,7 @@ public class TokenProvider implements InitializingBean {
 
     private Key key;
 
-
+    //application-local.yml 에 정의해놓은 jwt.secret 값을 가져와서 JWT 를 만들 때 사용하는 암호화 키값을 생성합니다.
     public TokenProvider(
             @Value("${jwt.secret}") String secret,
             @Value("${jwt.access-token-validity-in-seconds}") long accessTokenValidityInSeconds,
@@ -50,6 +50,9 @@ public class TokenProvider implements InitializingBean {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
+    //유저 정보를 넘겨받아서 Access Token을 생성합니다.
+    //TODO
+    //Refresh Token 도 제작 필요
     public String createAccessToken(String memberId, String nickname) {
         String authorities = "ROLE_USER";
 
@@ -60,7 +63,7 @@ public class TokenProvider implements InitializingBean {
                 .setHeaderParam("typ", "JWT")
                 .setSubject(memberId)
                 .setIssuer("LoveClinic Dear")
-//                .setIssuedAt(new Date())
+                //.setIssuedAt(new Date())
                 .setExpiration(validity)
                 .claim(AUTHORITIES_KEY, authorities)
                 .claim(NICKNAME_KEY, nickname)
@@ -69,9 +72,8 @@ public class TokenProvider implements InitializingBean {
                 .compact();
     }
     
-    //TODO
-    //Refresh Token 도 제작 필요
 
+    //JWT 토큰을 복호화하여 토큰에 들어 있는 정보를 꺼냅니다
     public Authentication getAuthentication(String token) {
         Claims claims = Jwts
                 .parserBuilder()

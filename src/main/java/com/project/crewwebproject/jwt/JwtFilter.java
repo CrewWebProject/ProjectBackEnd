@@ -12,8 +12,10 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+//JwtFilter: Spring Request 앞단에 붙일 Custom Filter
 public class JwtFilter extends GenericFilterBean {
-   
+
+
    public static final String AUTHORIZATION_HEADER = "Authorization";
 
    private final TokenProvider tokenProvider;
@@ -39,7 +41,7 @@ public class JwtFilter extends GenericFilterBean {
       filterChain.doFilter(servletRequest, servletResponse);
    }
 
-   //필터링을 하기위해서는 토큰 정보가 필요함. 토큰 접오를 꺼내오기 위한 메서드 추가
+   //필터링을 하기위해서는 토큰 정보가 필요함. 토큰 정보를 꺼내오기 위한 메서드 추가
    private String resolveToken(HttpServletRequest request) {
       String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
       if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
