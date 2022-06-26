@@ -26,13 +26,14 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-aop'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//    implementation 'junit:junit:4.13.2'
 
     //DataBase
     runtimeOnly 'mysql:mysql-connector-java'
 
-    //lombok && Test lombok
+    //lombok
     annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     //Swagger
     implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
