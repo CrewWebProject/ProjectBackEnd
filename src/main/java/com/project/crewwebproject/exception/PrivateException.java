@@ -9,6 +9,7 @@ public class PrivateException extends RuntimeException {
     private StatusCode statusCode;
 
     public PrivateException(StatusCode statusCode) {
+
         //지정된 상세 메시지로 새로운 런타임 예외를 구축합니다.
         super(statusCode.getStatusMsg());
         this.statusCode = statusCode;
