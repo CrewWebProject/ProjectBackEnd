@@ -12,18 +12,30 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
 public class UserService {
-
     private final UserRepository userRepository;
-
     private final TokenProvider tokenProvider;
-
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
+    private final PasswordEncoder passwordEncoder;
+
+    @Transactional
+    public void signup(UserDto userDto) {
+        User user = new User();
+        System.out.println(userDto.getUserId());
+        System.out.println(userDto.getUserName());
+        System.out.println(userDto.getUserPassword());
+
+        user.signUp(userDto , passwordEncoder.encode(userDto.getUserPassword()));
+
+        userRepository.save(user);
+    }
 
     public JwtTokenDto login(UserDto userDto) {
 
@@ -36,7 +48,7 @@ public class UserService {
         //위의 결과값을 가지고 SecurityContext 에 저장
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-         User findedUser = userRepository.findById(userDto.getUserId())
+        User findedUser = userRepository.findById(userDto.getUserId())
                 .orElseThrow(() -> new PrivateException(StatusCode.LOGIN_USER_ID_FAIL));
 
         //TODO : refreshToken 구현 필요
