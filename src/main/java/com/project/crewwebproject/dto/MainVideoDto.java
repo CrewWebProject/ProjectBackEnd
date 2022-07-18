@@ -11,5 +11,4 @@ public class MainVideoDto {
     public String getVideoUrl() {
         return videoUrl;
     }
-
 }

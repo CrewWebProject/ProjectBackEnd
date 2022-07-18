@@ -28,9 +28,6 @@ public class UserService {
     @Transactional
     public void signup(UserDto userDto) {
         User user = new User();
-        System.out.println(userDto.getUserId());
-        System.out.println(userDto.getUserName());
-        System.out.println(userDto.getUserPassword());
 
         user.signUp(userDto , passwordEncoder.encode(userDto.getUserPassword()));
 
