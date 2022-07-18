@@ -12,7 +12,7 @@ public class MainVideo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mainVideoId;
 
-    @Column
+    @Column(nullable = false)
     private String mainVideoUrl;
 
     public void setMainVideoUrl(String videoUrl) {

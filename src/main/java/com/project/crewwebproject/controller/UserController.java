@@ -10,8 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
@@ -20,8 +21,13 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<PrivateResponseBody> login(UserDto userDto){
-
         return new ResponseEntity<>(new PrivateResponseBody(StatusCode.OK , userService.login(userDto)), HttpStatus.OK);
+    }
+
+    @PostMapping("/sign_up")
+    public ResponseEntity<PrivateResponseBody> signUp(UserDto userDto){
+        userService.signup(userDto);
+        return new ResponseEntity<>(new PrivateResponseBody(StatusCode.OK , null), HttpStatus.OK);
     }
 
 }
