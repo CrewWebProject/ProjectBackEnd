@@ -20,13 +20,18 @@ public class MainController {
 
     private final MainService mainService;
 
-    @GetMapping
+    @GetMapping("video")
     public ResponseEntity<PrivateResponseBody> getMainVideo(){
         return new ResponseEntity<>(new PrivateResponseBody(StatusCode.OK , mainService.getMainVideoUrl()), HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("video")
     public ResponseEntity<PrivateResponseBody> postMainVideo(MainVideoDto mainVideoDto){
         return new ResponseEntity<>(new PrivateResponseBody(StatusCode.OK , mainService.postMainVideoUrl(mainVideoDto)), HttpStatus.OK);
+    }
+
+    @GetMapping("performance")
+    public ResponseEntity<PrivateResponseBody> getMainPerformance(){
+        return new ResponseEntity<>(new PrivateResponseBody(StatusCode.OK , mainService.getMainPerformance()), HttpStatus.OK);
     }
 }
