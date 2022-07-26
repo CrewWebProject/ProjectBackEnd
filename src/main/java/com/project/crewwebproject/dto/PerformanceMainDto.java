@@ -3,7 +3,7 @@ package com.project.crewwebproject.dto;
 import lombok.Builder;
 import lombok.Getter;
 
-
+//메인 페이지의 퍼포먼스 노출 데이터 전달
 @Getter
 @Builder
 public class PerformanceMainDto {

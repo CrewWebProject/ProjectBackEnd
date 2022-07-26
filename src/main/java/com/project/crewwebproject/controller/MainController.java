@@ -4,6 +4,7 @@ import com.project.crewwebproject.dto.MainVideoDto;
 import com.project.crewwebproject.exception.PrivateResponseBody;
 import com.project.crewwebproject.exception.StatusCode;
 import com.project.crewwebproject.service.MainService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,17 +21,20 @@ public class MainController {
 
     private final MainService mainService;
 
-    @GetMapping("video")
+    @ApiOperation("GET 메인 페이지에 재생될 비디오 데이터")
+    @GetMapping("/video")
     public ResponseEntity<PrivateResponseBody> getMainVideo(){
         return new ResponseEntity<>(new PrivateResponseBody(StatusCode.OK , mainService.getMainVideoUrl()), HttpStatus.OK);
     }
 
-    @PostMapping("video")
+    @ApiOperation("POST 메인 페이지에 재생될 비디오 데이터")
+    @PostMapping("/video")
     public ResponseEntity<PrivateResponseBody> postMainVideo(MainVideoDto mainVideoDto){
         return new ResponseEntity<>(new PrivateResponseBody(StatusCode.OK , mainService.postMainVideoUrl(mainVideoDto)), HttpStatus.OK);
     }
 
-    @GetMapping("performance")
+    @ApiOperation("GET 메인 페이지에 노출될 퍼포먼스 데이터들")
+    @GetMapping("/performance")
     public ResponseEntity<PrivateResponseBody> getMainPerformance(){
         return new ResponseEntity<>(new PrivateResponseBody(StatusCode.OK , mainService.getMainPerformance()), HttpStatus.OK);
     }
