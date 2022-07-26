@@ -84,6 +84,7 @@ public class AwsS3Service {
         return imgUrlList;
     }
 
+
     public void deleteAllWithImgPathList(List<String> imgPathList) {
         try {
             imgPathList.stream().forEach(imgPath -> amazonS3Client().deleteObject(new DeleteObjectRequest(bucket, imgPath.split("amazonaws.com/")[1])));

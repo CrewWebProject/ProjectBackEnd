@@ -1,13 +1,14 @@
 package com.project.crewwebproject.domain;
 
-import com.project.crewwebproject.dto.PerformanceDto;
+import com.project.crewwebproject.dto.PerformanceSaveDto;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
-public class Performance extends Timestamped{
+public class Performance{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,16 +36,27 @@ public class Performance extends Timestamped{
 
     //퍼포먼스 시간
     @Column(nullable = false)
-    private String time;
+    private String runTime;
 
     //출연 인원
     @Column(nullable = false)
     private String personnel;
 
-    public void setPerformance(PerformanceDto performanceDto){
-        this.performanceVideoUrl = performanceDto.getPerformanceVideoUrl();
-        this.mainTitle = performanceDto.getMainTitle();
-        this.subTitle = performanceDto.getSubTitle();
-        this.introduce = performanceDto.getIntroduce();
+    @OneToMany(mappedBy = "performance", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PerformanceImage> performaceImages;
+
+
+    public void performanceSave(PerformanceSaveDto performanceSaveDto) {
+        this.performanceVideoUrl = performanceSaveDto.getPerformanceVideoUrl();
+        this.mainTitle = performanceSaveDto.getMainTitle();
+        this.subTitle = performanceSaveDto.getSubTitle();
+        this.introduce = performanceSaveDto.getIntroduce();
+        this.runTime = performanceSaveDto.getRunTime();
+        this.personnel = performanceSaveDto.getPersonnel();
     }
+
+    public void setPerformanceThumbnail(String thumbnailUrl) {
+        this.thumbnail = thumbnailUrl;
+    }
+
 }
