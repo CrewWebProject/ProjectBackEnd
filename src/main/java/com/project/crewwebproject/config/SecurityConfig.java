@@ -1,10 +1,10 @@
 package com.project.crewwebproject.config;
 
 
-import com.project.crewwebproject.jwt.JwtAccessDeniedHandler;
-import com.project.crewwebproject.jwt.JwtAuthenticationEntryPoint;
-import com.project.crewwebproject.jwt.JwtSecurityConfig;
-import com.project.crewwebproject.jwt.TokenProvider;
+import com.project.crewwebproject.auth.jwt.JwtAccessDeniedHandler;
+import com.project.crewwebproject.auth.jwt.JwtAuthenticationEntryPoint;
+import com.project.crewwebproject.auth.jwt.JwtSecurityConfig;
+import com.project.crewwebproject.auth.jwt.TokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

@@ -1,6 +1,6 @@
 package com.project.crewwebproject.controllerTest;
 
-import com.project.crewwebproject.controller.TestController;
+import com.project.crewwebproject.test.TestController;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

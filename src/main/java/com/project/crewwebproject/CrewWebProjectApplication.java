@@ -20,6 +20,7 @@ public class CrewWebProjectApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(CrewWebProjectApplication.class, args);
+
     }
 
 }
